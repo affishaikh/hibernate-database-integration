@@ -10,18 +10,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "employee")
 public class Employee {
-    private int employeeId;
+    private Integer employeeId;
 
     private String name;
 
     @Id
     @Column(name = "employee_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getEmployeeId() {
+    public Integer getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(Integer employeeId) {
         this.employeeId = employeeId;
     }
 

@@ -1,13 +1,14 @@
-
 package com.exploring.main;
 
-import java.util.List;
+//javax.persistence is coming from hibernate
+
+import com.exploring.model.Employee;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
-import com.exploring.model.Employee;
+import javax.persistence.Query;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) {
@@ -16,7 +17,6 @@ public class App {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("persistence");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        System.out.println("Starting Transaction");
         entityManager.getTransaction().begin();
         Employee employee = new Employee();
         employee.setName("Pankaj");
@@ -30,10 +30,18 @@ public class App {
         Employee emp = entityManager.find(Employee.class, employee.getEmployeeId());
         System.out.println("got object " + emp.getName() + " " + emp.getEmployeeId());
 
+        Query query = entityManager.createNativeQuery("SELECT e.employee_id, e.employee_name FROM Employee e");
+        List<Object[]> employees = query.getResultList();
+        for (Object[] employee1 : employees) {
+            System.out.println("Employee "
+                    + employee1[0]
+                    + " "
+                    + employee1[1]);
+        }
+
         // close the entity manager
         entityManager.close();
         entityManagerFactory.close();
-
     }
 }
 
