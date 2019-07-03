@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
 
     @Autowired
-    EmployeeRepository empRepo;
+    private EmployeeRepository employeeRepository;
 
     @RequestMapping("/")
     String home() {
-        System.out.println(empRepo.getAll());
+        System.out.println("---------------------"+employeeRepository.getAll());
         return "Vakairi";
     }
 }

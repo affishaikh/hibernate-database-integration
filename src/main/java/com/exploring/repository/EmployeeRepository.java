@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface EmployeeRepository extends CrudRepository<Employee, Integer> {
 
-    @Query(value = "select * from emplyee", nativeQuery = true)
+    @Query(value = "select * from employee", nativeQuery = true)
     List<Employee> getAll();
 }
 
